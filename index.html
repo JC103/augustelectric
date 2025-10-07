@@ -30,20 +30,51 @@
     <h1>August Electric</h1>
     <p><strong>Engineering & Commissioning Services for Alberta’s Energy and Infrastructure Sectors</strong></p>
 
-    <p>August Electric delivers professional electrical engineering and commissioning and commissioning management services across Canada. With international project experience and a focus on high-performance delivery, our mission is to support critical infrastructure in energy, utilities, and technology-driven environments.</p>
+    <p>August Electric delivers professional electrical engineering and commissioning management services across Canada. With international project experience and a focus on high-performance delivery, our mission is to support critical infrastructure in energy, utilities, and technology-driven environments.</p>
     <p>We are proudly Canadian with over 10 years of engineering experience, both domestic and international.</p>
+
     <h2>Core Services</h2>
     <ul>
-      <li>Electrical system design for data centers, industrial and energy facilities - MCC's, Transformers, Switchgears, Motors, VFD's, EHT, etc.</li>
+      <li>Electrical system design for data centers, industrial and energy facilities — MCCs, transformers, switchgear, motors, VFDs, EHT, etc.</li>
       <li>Integrated system testing (IST) and live commissioning</li>
       <li>Control systems integration (PLC, DCS, automation)</li>
       <li>Power distribution, EHT, MCC, and transformer systems</li>
-      <li>Data center commissioning for hyperscale and colocation providers: CRAH, BMS, UPS, Generators, ATS, AHU, Chillers, etc.</li>
+      <li>Data center commissioning for hyperscale and colocation providers: CRAH, BMS, UPS, generators, ATS, AHU, chillers, etc.</li>
       <li>Support for EPC, EPCM, and construction-driven projects</li>
-      <li>Commissioning Managment (Cx L0, L1, L2, L3, L4, L5, L6)</li>
+      <li>Commissioning Management (Cx L0, L1, L2, L3, L4, L5, L6)</li>
       <li>Site Acceptance Testing, Factory Witness Testing, IST (Integrated Systems Testing)</li>
       <li>Prior clients include Equinix, STT, Vantage, and others, for tenants like AWS, Google, Alibaba, etc.</li>
     </ul>
+
+    <!-- ===== Simple 3-image Carousel (Gallery) ===== -->
+    <section class="carousel" aria-label="Project gallery">
+      <div class="carousel-viewport">
+        <figure class="slide" data-i="0">
+          <!-- Use your exact filenames; replace alt/captions -->
+          <img src="images/blur1759808748582~2.jpg" alt="Photo 1 description" loading="lazy">
+          <figcaption>Short caption for photo 1</figcaption>
+        </figure>
+        <figure class="slide" data-i="1" hidden>
+          <img src="images/blur1759808860219~2.jpg" alt="Photo 2 description" loading="lazy">
+          <figcaption>Short caption for photo 2</figcaption>
+        </figure>
+        <figure class="slide" data-i="2" hidden>
+          <!-- Replace with your third image when uploaded -->
+          <img src="images/blur1759808748582~2.jpg" alt="Photo 3 description" loading="lazy">
+          <figcaption>Short caption for photo 3</figcaption>
+        </figure>
+      </div>
+
+      <button class="nav prev" aria-label="Previous slide" type="button">‹</button>
+      <button class="nav next" aria-label="Next slide" type="button">›</button>
+
+      <div class="dots" role="tablist" aria-label="Choose slide">
+        <button role="tab" aria-selected="true" data-i="0" aria-controls="slide-0"></button>
+        <button role="tab" aria-selected="false" data-i="1" aria-controls="slide-1"></button>
+        <button role="tab" aria-selected="false" data-i="2" aria-controls="slide-2"></button>
+      </div>
+    </section>
+    <!-- ===== End Carousel ===== -->
 
     <h2>Industries Served</h2>
     <ul>
@@ -54,6 +85,45 @@
 
     <p><em>August Electric is proudly Canadian, supporting Alberta and Canada's growth in industrial and digital infrastructure. Edmonton/Calgary and area. This page last updated October 2025.</em></p>
   </div>
+
+  <!-- Minimal, dependency-free carousel JS -->
+  <script>
+  (function () {
+    const root = document.querySelector('.carousel');
+    if (!root) return;
+    const slides = [...root.querySelectorAll('.slide')];
+    const prev = root.querySelector('.prev');
+    const next = root.querySelector('.next');
+    const dots  = [...root.querySelectorAll('.dots [role="tab"]')];
+    let i = 0;
+
+    function show(n) {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, idx) => s.hidden = idx !== i);
+      dots.forEach((d, idx) => d.setAttribute('aria-selected', String(idx === i)));
+    }
+
+    prev.addEventListener('click', () => show(i - 1));
+    next.addEventListener('click', () => show(i + 1));
+    dots.forEach(d => d.addEventListener('click', e => show(+e.currentTarget.dataset.i)));
+
+    // Keyboard arrows
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') show(i + 1);
+      if (e.key === 'ArrowLeft')  show(i - 1);
+    });
+    root.tabIndex = 0; // focusable for keyboard use
+
+    // Basic touch swipe
+    let startX = 0;
+    root.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive:true});
+    root.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) dx < 0 ? show(i + 1) : show(i - 1);
+    });
+
+    show(0);
+  })();
+  </script>
 </body>
 </html>
-
