@@ -50,17 +50,16 @@
     <section class="carousel" aria-label="Project gallery">
       <div class="carousel-viewport">
         <figure class="slide" data-i="0">
-          <!-- Use your exact filenames; replace alt/captions -->
-          <img src="images/blur1759808748582~2.jpg" alt="Photo 1 description" loading="lazy">
+          <img src="images/blur1759808748582~2.jpg" alt="Data Center Electrical SAT" loading="lazy">
           <figcaption>Short caption for photo 1</figcaption>
         </figure>
         <figure class="slide" data-i="1" hidden>
-          <img src="images/blur1759808860219~2.jpg" alt="Photo 2 description" loading="lazy">
+          <img src="images/blur1759808860219~2.jpg" alt="Data Center Electrical SAT" loading="lazy">
           <figcaption>Short caption for photo 2</figcaption>
         </figure>
         <figure class="slide" data-i="2" hidden>
-          <!-- Replace with your third image when uploaded -->
-          <img src="images/blur1759808748582~2.jpg" alt="Photo 3 description" loading="lazy">
+          <!-- Currently reusing first photo until you upload a third -->
+          <img src="images/blur1759808748582~2.jpg" alt="Data Center Electrical SAT" loading="lazy">
           <figcaption>Short caption for photo 3</figcaption>
         </figure>
       </div>
@@ -107,14 +106,12 @@
     next.addEventListener('click', () => show(i + 1));
     dots.forEach(d => d.addEventListener('click', e => show(+e.currentTarget.dataset.i)));
 
-    // Keyboard arrows
     root.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight') show(i + 1);
       if (e.key === 'ArrowLeft')  show(i - 1);
     });
-    root.tabIndex = 0; // focusable for keyboard use
+    root.tabIndex = 0;
 
-    // Basic touch swipe
     let startX = 0;
     root.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive:true});
     root.addEventListener('touchend', e => {
