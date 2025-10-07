@@ -26,6 +26,49 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+
+  <!-- Block Japan (temp) -->
+<style>
+  #blockJP {
+    position: fixed; inset: 0; display: none; align-items: center; justify-content: center;
+    background:#fff; z-index:2147483647; padding:2rem; font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto;
+    text-align:center;
+  }
+</style>
+<div id="blockJP"><div>
+  <h2>Unavailable in your region</h2>
+  <p>Content temporarily unavailable in Japan.</p>
+</div></div>
+<script>
+(async () => {
+  const overlay = document.getElementById('blockJP');
+  const block = () => (overlay.style.display = 'flex');
+
+  // 1) Try IP-based geolocation (no key)
+  let country = null;
+  try {
+    const r = await fetch('https://ipapi.co/json/', { cache: 'no-store' });
+    if (r.ok) {
+      const j = await r.json();
+      country = (j.country || j.country_code || '').toString().toUpperCase();
+    }
+  } catch {}
+
+  // 2) Fallback heuristics if API fails
+  if (!country) {
+    const lang = (navigator.language || '').toLowerCase();
+    const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase();
+    if (lang.startsWith('ja') || tz.includes('tokyo') || tz.includes('japan')) country = 'JP';
+  }
+
+  if (country === 'JP') block();
+
+  // Optional manual testing: add ?forcejp=1 to URL
+  if (new URLSearchParams(location.search).has('forcejp')) block();
+})();
+</script>
+<!-- Block Japan (temp end) -->
+  
   <div class="container">
     <h1 class="logo-tight">AUGUST ELECTRIC</h1>
     <p><strong>Engineering & Commissioning Services for Alberta’s Energy and Infrastructure Sectors</strong></p>
@@ -122,6 +165,7 @@
   </script>
 </body>
 </html>
+
 
 
 
