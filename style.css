@@ -111,5 +111,5 @@ em {
 }
 
 @media (min-width: 960px) {
-  .logo-tight { letter-spacing: -0.045em; }
+  .logo-tight { letter-spacing: -0.05em; }
 }
