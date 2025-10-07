@@ -105,11 +105,11 @@ em {
 .dots button[aria-selected="true"] { background: #333; }
 
 .logo-tight {
-  letter-spacing: -0.03em;          /* try between -0.02em and -0.06em */
+  letter-spacing: -0.1em;          /* try between -0.02em and -0.06em */
   font-kerning: normal;              /* use font kerning pairs */
   text-rendering: optimizeLegibility;/* hint to enable kerning/ligatures */
 }
 
 @media (min-width: 960px) {
-  .logo-tight { letter-spacing: -0.05em; }
+  .logo-tight { letter-spacing: -0.1em; }
 }
